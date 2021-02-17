@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <H1 class="card-header">@lang('es.global.Dashboard_title')</h1>
 
                 <div class="card-body">
                     @if (session('status'))
