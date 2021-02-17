@@ -7,37 +7,62 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>{{ config('app.name') }}</title>
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
+    <!-- icons-->
+    <script src="https://kit.fontawesome.com/716c39e7c3.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<div id="app">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-main-brand">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name') }}
+                    
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collapse navbar-collapse ml-lg-5" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/"><i class="fas fa-home "></i></a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-light" href="/contactus">Contacto<a></a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link " href="/product">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/category">Categorías</a>
+                        </li>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                        
+                        
                     </ul>
+                </div>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><i class="nav-link fas fa-shopping-cart"></i></a>
+                        </li>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -71,13 +96,25 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
             </div>
         </nav>
+    </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <main class="py-4">
+        @yield('content')
+    </main>
+    <footer id="footer" class="text-center text-light py-3 bg-main-brand">
+        <address >
+            Copyright © 2016 - 2021 Tecnoinnsoft SAS, Todos los derechos reservados.
+        </address>
+        <div>
+          <a class="link-light" href="#"><i class="fa fa-whatsapp"></i> +57 300 519 2319</a> - 
+          <a class="link-light" href="mailto:contacto@deseguridad.net"><i class="fa fa-envelope-o"></i> Contacto@deseguridad.net</a> 
+        </div>
+        <a class="link-light" href="#"><i class="fa fa-facebook-square"></i> Facebook</a> | 
+        <a class="link-light" href="#"><i class="fa fa-twitter-square"></i> Twitter</a> |
+        <a class="link-light" href="#"><i class="fa fa-youtube-square"></i> Youtube</a> |
+        <a class="link-light" href="#"><i class="fa fa-linkedin-square"></i> LinkedIn</a>
+    </footer>
 </body>
 </html>
