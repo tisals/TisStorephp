@@ -44,6 +44,7 @@
             <div class="col-md-4">
                 <label class="form-label">@lang('es.product.status')</label>
                 <select id="status" name="status" class="form-control" value="{{ old('status') }}">
+                    <option value="">Seleccione estado..</option>
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>

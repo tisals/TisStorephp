@@ -2,7 +2,7 @@
 @section('content')
 	<!--aquí va el contenido de la página-->
     <div class="container">
-    <h1>LISTA DE CATEGORIAS</h1>
+    <h1>Todas las categorías</h1>
     <a class="btn btn-main-brand float-right my-3" href="/category/create">{{__('es.category.create_title')}}</a>
 
     <table class="table">

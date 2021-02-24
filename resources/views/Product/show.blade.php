@@ -21,8 +21,11 @@
                         <p class="card-text"><b>@lang('es.product.description'): </b>{{ $product->description }}</p>
                     </div>
                     <div class="m-3 d-flex justify-content-center">
-
+                    @guest
+                        <a class="mx-4 btn btn-main-brand btn-block" href="/listproduct">Volver</a>
+                    @else
                         <a class="mx-4 btn btn-main-brand btn-block" href="/product">Volver</a>
+                    @endguest
                     </div>
                 </div>
             </div>

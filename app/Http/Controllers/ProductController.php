@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use App\Models\category;
+use App\Models\Category;
 
 
 class ProductController extends Controller
@@ -16,10 +16,7 @@ class ProductController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    } 
+ 
     
     /**
      * Display a listing of the resource.
@@ -30,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('product.index', [
-            'products' => product::all()
+            'products' => Product::all()
         ]);
     }
 
@@ -41,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = category::all();
+        $category = Category::all();
         return view('product.create', compact('category'));
     }
 
@@ -63,15 +60,19 @@ class ProductController extends Controller
         if ($request->file('image')!= null){
             $image = $this->get_and_save_image($request->file('image'));
         }
+        $state=$request->status;
+        if ($state==''){
+            $state='Activo';
+        }
 
-        product::create([
+        Product::create([
             'name'=> $request->get('name'),
             'description'=> $request->get('description'),
             'value'=> $request->get('value'),
             'image'=> $image,
             'type'=> $request->get('type'),
             'brand'=> $request->get('brand'),
-            'status'=> $request->get('status'),
+            'status'=> $state,
             'category_id'=> $request->get('category_id'),
         ]);
         return redirect('/product');
@@ -108,11 +109,15 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //$category = category::all();
-        return view('product.edit',[
+        $category = category::all();
+        return view('product.edit',compact('product', 'category'));
+     /*   return view('product.edit',[
+            'category' => $category,
             'product' => $product,
             
-        ]);
+        ]);*/
+        
+
     }
 
     /**
@@ -135,13 +140,17 @@ class ProductController extends Controller
         if ($request->file('image')!= null){
             $product->image = $this->get_and_save_image($request->file('image'));
         }
+        $state=$request->status;
+        if ($state==''){
+            $state='Activo';
+        }
 
         $product->name = $request->get('name');
         $product->description = $request->get('description');
         $product->value= $request->get('value');
         $product->type= $request->get('type');
         $product->brand= $request->get('brand');
-        $product->status= $request->get('status');
+        $product->status= $state;
         $product->category_id= $request->get('category_id');
         $product -> save();
         return redirect('/product');
@@ -157,5 +166,15 @@ class ProductController extends Controller
     {
         $product-> delete();
         return redirect()->route('product.index');
+    }
+
+    public function listproduct()
+    {
+        $category = category::all();
+        $products = product::all();
+        return view('product.listproduct',compact('products', 'category'));
+       /* return view('product.listproduct', [
+            'products' => product::all()
+        ]);*/
     }
 }

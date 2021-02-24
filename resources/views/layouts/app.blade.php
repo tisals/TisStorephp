@@ -41,18 +41,23 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="/"><i class="fas fa-home "></i></a>
                         </li>
-                        
+                        @guest
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light" href="/contactus">Contacto<a></a>
+                            <a class="nav-link btn btn-outline-light" href="{{route('guardarcontacto')}}">Contacto<a></a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link " href="/product">Productos</a>
+                            <a class="nav-link " href="/listproduct">Productos</a>
+                        </li>
+                        
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link " href="/product">Mis Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/category">Categorías</a>
+                            <a class="nav-link" href="/category">Mis Categorías</a>
                         </li>
-
+                        @endguest
                         
                         
                     </ul>
