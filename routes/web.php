@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/contactus', [App\Http\Controllers\frontController::class, 'index'])->name('contactus');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/product', ProductController::class);
-Route::resource('/category', CategoryController::class);
+Route::get('/listproduct', [ProductController::class, 'listproduct'])->name('listadoproductos');
+Route::get('/contact/contactar', [ContactController::class, 'contactar'])->name('guardarcontacto');
+Route::get('/contact/notification', [ContactController::class, 'guardar'])->name('notificarcontacto');
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/product', ProductController::class);
+    Route::resource('/category', CategoryController::class);
+
+}); 

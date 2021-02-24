@@ -32,7 +32,7 @@
             <div class="col-md-4">
                 <label class="form-label">@lang('es.product.value')</label>
                 <input type="text" id="value" name="value" class="form-control @error('value') is-invalid @enderror "
-                    value="{{ $product -> value }}"/>
+                    value="{{ $product->value  }}"/>
                 @error('value')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -40,9 +40,17 @@
             <div class="col-md-4">
                 <label class="form-label">@lang('es.product.category_id')</label>
                 <select id="category_id" name="category_id" class="form-control" value="{{ $product -> category_id }}">
-                    <option value="">Seleccione una categoria...</option>
-                    <option value="2">Servicios</option>
-                    <option value="3">BIO-TIS-3</option>
+                    
+                    @foreach($category as $catego)
+                        <option value="{{ $catego->id }}"
+                        @if ($product->category_id== $catego->id)
+                          selected
+                        @endif 
+                        > {{$catego->name }}</option> 
+                      @endforeach 
+                    
+                    
+                   
                 </select>
             </div>
         </div>

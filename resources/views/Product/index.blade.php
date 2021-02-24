@@ -17,7 +17,7 @@
             @foreach ($products as $prod)
                 <tr>
                     <td> {{ $prod -> name}}</td>
-                    <td> {{ $prod -> value}}</td>
+                    <td> {{ number_format($prod->value, 0, ',', '.') }}</td>
                     <td> {{ $prod -> status}}</td>
                     <td>
                         <a type="button" class="btn btn-success d-inline" data-toggle="tooltip" title="Consultar" href="/product/{{$prod -> id}}"><i class="fa fa-search"></i> </a>
