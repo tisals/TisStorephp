@@ -9,7 +9,7 @@
             <div class="col-md-8">
                 <label class="form-label">@lang('es.product.image')</label>
                 <div class="custom-file">
-                    <input type="file" id="image" name="image" class="custom-file-input" value="{{ old('image') }}"/>
+                    <input type="file" id="image" name="image" class="custom-file-input" />
                     <label class="custom-file-label" for="image" data-browse="Seleccionar"></label>
                 </div>
             </div>
@@ -76,7 +76,7 @@
         </div>
 
         <div class="m-3 d-flex justify-content-center">
-            <button class="mx-3 btn btn-main-brand">Enviar</button>
+            <button class="mx-3 btn btn-main-brand">Guardar</button>
             <a class="mx-4 btn btn-secondary" href="/product">Volver</a>
         </div>
 

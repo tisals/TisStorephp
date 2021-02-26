@@ -13,7 +13,7 @@
         <div class="row mt-4">
         @foreach ($products as $prod)
         @if ($prod->category_id == $cat->id)
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card text-center">
                 <img src="storage/{{ $prod->image }}" class="card-img-top" alt="Producto">
                 <div class="card-body">

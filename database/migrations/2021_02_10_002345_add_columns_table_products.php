@@ -16,7 +16,7 @@ class AddColumnsTableProducts extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->string('name', 50 )->nullable($value = false)->after('id');
             $table->text('description')->nullable($value = false)->after('name');
-            $table->float('value')->nullable($value = false)->after('description');
+            $table->Double('value', 15,2)->nullable($value = false)->after('description');
             $table->string('image', 50 )->nullable()->after('value');
             $table->enum('type', ['Físico', 'Digital'])->after('image');
             $table->string('brand', 40)->after('type');
