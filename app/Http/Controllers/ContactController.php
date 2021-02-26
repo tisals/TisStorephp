@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\mailContact;
 
 
 class ContactController extends Controller
@@ -26,21 +28,45 @@ class ContactController extends Controller
             'email' => ['required', 'email'],
             'message' => ['required', 'string']
         ]);
-
+        /*
         $email = $request->email;
-        $information = Contact::all();
+        $information = "Gracias por su registro, en breves instantes nos pondremos en contacto";
         
         Contact::create([
             'name'=> $request->get('name'),
             'email' => $request->get('email'),
-            'message' => $request->get('email'),
+            'message' => $request->get('message'),
       
         ]);
 
-        Mail::to($email)->send(new mailContact($information));
+        Mail::to('aleguizamo@gmail.com')->send(new mailContact($information));*/
+        
+        $contact =new Contact;
+        $contact->name =$request->name;
+        $contact->email =$request->email;
+        $contact->message =$request->message;
+        $contact->save();
+        
+        Mail::send('contact/notification',['contact'=>$contact], function($information) use ($contact){
+            $information->from('tisstore.contact@gmail.com', 'Notificaciones');
+            $information->to('tisstore.contact@gmail.com');
+            $information->subject('Mensaje enviado de ' .$contact->name);
+        });
+        Mail::send('contact/notificationclient',['contact'=>$contact], function($information) use ($contact){
+            $information->from('tisstore.contact@gmail.com', 'Contacto Tis Store');
+            $information->to($contact->email);
+            $information->subject('Mensaje enviado de TIS STORE');
+        });
+        
+        /*$contact = Contact::all();
+        return view('contact.contactar', compact('contact'));*/
 
-        return redirect()->route('notificarcontacto')
-                         ->with('success','Gracias por su registro, en breves instantes nos pondremos en contacto');
+        $request->session()->flash('success', 'Mensaje enviado Correctamente');
+        return redirect()->back();
+
+                         
     
     }
+
+    
 }
