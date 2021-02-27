@@ -38,10 +38,11 @@
                 </button>
                 <div class="collapse navbar-collapse ml-lg-5" id="navbarNav">
                     <ul class="navbar-nav">
+                       
+                        @guest
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="/"><i class="fas fa-home "></i></a>
                         </li>
-                        @guest
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-light" href="{{route('guardarcontacto')}}">Contacto<a></a>
                         </li>
@@ -51,6 +52,9 @@
                         </li>
                         
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/home"><i class="fas fa-home "></i></a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link " href="/product">Mis Productos</a>
                         </li>

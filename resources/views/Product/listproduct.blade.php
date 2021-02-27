@@ -4,12 +4,9 @@
 <div class="container">
     <h1>@lang('es.product.list_title')</h1>
 
-    
-
-
     @foreach ($category as $cat)
     
-        <h2 class="my-5">{{$cat->name}}</h2>
+        <h2 class="my-3">{{$cat->name}}</h2>
         <div class="row mt-4">
         @foreach ($products as $prod)
         @if ($prod->category_id == $cat->id)
