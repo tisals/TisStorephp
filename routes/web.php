@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/listproduct', [ProductController::class, 'listproduct'])->name('listadoproductos');
 Route::get('/contact/contactar', [ContactController::class, 'contactar'])->name('guardarcontacto');
 Route::get('/contact/notification', [ContactController::class, 'guardar'])->name('notificarcontacto');
-
+Route::get('/listcontacts', [ContactController::class, 'listcontact'])->name('listarcontacto');
 
 Route::group(['middleware' => 'auth'], function () {
 

@@ -10,6 +10,11 @@ use App\Mail\mailContact;
 
 class ContactController extends Controller
 {
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function contactar (Contact $contact)
     {
         return view ('contact.contactar');
@@ -58,15 +63,18 @@ class ContactController extends Controller
             $information->subject('Mensaje enviado de TIS STORE');
         });
         
-        /*$contact = Contact::all();
-        return view('contact.contactar', compact('contact'));*/
-
-        $request->session()->flash('success', 'Mensaje enviado Correctamente');
         return redirect()->back();
-
-                         
-    
     }
-
+    public function listcontact()
+    {
+        return view('contact.listcontacts', [
+            'contacts' => Contact::all()
+        ]);
+    }
+   // public function destroy(Category $category)
+   // {
+   //     $category->delete();
+   //     return redirect()->route('listarcontacto');
+   // }
     
 }
